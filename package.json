@@ -1,0 +1,28 @@
+{
+  "name": "agent-btp-email",
+  "version": "1.0.0",
+  "description": "AI email agent for BTP companies - Node.js/TypeScript",
+  "main": "index.js",
+  "scripts": {
+  "start": "ts-node src/index.ts",
+  "build": "tsc",
+  "dev": "ts-node --watch src/index.ts"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lounas-nait/agent-btp-email.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/lounas-nait/agent-btp-email/issues"
+  },
+  "homepage": "https://github.com/lounas-nait/agent-btp-email#readme",
+  "devDependencies": {
+    "@types/node": "^26.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  }
+}
