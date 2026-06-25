@@ -4,10 +4,10 @@
   "description": "AI email agent for BTP companies - Node.js/TypeScript",
   "main": "index.js",
   "scripts": {
-  "start": "ts-node src/index.ts",
-  "build": "tsc",
-  "dev": "ts-node --watch src/index.ts"
-},
+    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "dev": "ts-node --watch src/index.ts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lounas-nait/agent-btp-email.git"
@@ -21,8 +21,16 @@
   },
   "homepage": "https://github.com/lounas-nait/agent-btp-email#readme",
   "devDependencies": {
+    "@types/imap-simple": "^4.2.10",
     "@types/node": "^26.0.1",
+    "@types/nodemailer": "^8.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "imap-simple": "^5.1.0",
+    "nodemailer": "^9.0.1",
+    "openai": "^6.45.0"
   }
 }
