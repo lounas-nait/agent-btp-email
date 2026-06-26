@@ -1,29 +1,48 @@
-import * as nodemailer from 'nodemailer';
+import { google } from 'googleapis';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
+
+const oauth2Client = new google.auth.OAuth2(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  process.env.GOOGLE_REDIRECT_URI
+);
+
+oauth2Client.setCredentials({
+  refresh_token: process.env.GOOGLE_REFRESH_TOKEN
+});
+
+const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
 
 export async function createDraft(
   to: string,
   subject: string,
   body: string
 ): Promise<void> {
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASSWORD,
-    },
-  });
 
-  // Envoi vers sa propre boîte en tant que brouillon
-  await transporter.sendMail({
-    from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER, // On s'envoie à soi-même
-    subject: `[BROUILLON] Re: ${subject} → À envoyer à : ${to}`,
-    text: `DESTINATAIRE FINAL : ${to}\n\n${body}`,
+  const message = [
+    `To: ${to}`,
+    `Subject: ${subject}`,
+    `Content-Type: text/plain; charset=utf-8`,
+    `MIME-Version: 1.0`,
+    ``,
+    body
+  ].join('\n');
+
+  const encodedMessage = Buffer.from(message)
+    .toString('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
+
+  await gmail.users.drafts.create({
+    userId: 'me',
+    requestBody: {
+      message: {
+        raw: encodedMessage
+      }
+    }
   });
 
   console.log(`📝 Brouillon créé pour : ${to}`);

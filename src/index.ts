@@ -8,12 +8,12 @@ dotenv.config();
 
 async function main() {
   console.log('🤖 Agent BTP démarré...');
-  
+
   try {
     // 1. Lire les emails non lus
     console.log('📬 Lecture des emails...');
     const emails = await readUnreadEmails();
-    
+
     if (emails.length === 0) {
       console.log('✅ Aucun email à traiter.');
       return;
@@ -24,13 +24,19 @@ async function main() {
     // 2. Traiter chaque email
     for (const email of emails) {
       console.log(`\n🔍 Analyse de : ${email.subject}`);
-      
+
       // 3. Analyser avec l'IA
       const analysis = await analyzeEmail(
         email.from,
         email.subject,
         email.body
       );
+
+      // Ignorer les mails non pertinents
+      if (analysis.type === 'Ignorer') {
+        console.log(`⏭️ Email ignoré : ${email.subject}`);
+        continue;
+      }
 
       console.log(`📊 Type: ${analysis.type} | Urgence: ${analysis.urgence}`);
 
@@ -53,7 +59,7 @@ async function main() {
     }
 
     console.log('\n✅ Tous les emails ont été traités.');
-    
+
   } catch (error) {
     console.error('❌ Erreur:', error);
   }

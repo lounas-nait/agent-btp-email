@@ -38,6 +38,10 @@ Pour chaque email tu dois :
 
 2. Evaluer l'urgence (Haute, Moyenne, Faible)
 3. Rédiger une réponse professionnelle adaptée
+4.RÈGLES IMPORTANTES :
+- Si l'email est une notification automatique (sécurité Google, pub, newsletter, no-reply, confirmation automatique) → retourne type "Ignorer"
+- Si l'email ne nécessite pas de réponse → retourne type "Ignorer"
+- Ne traite que les emails qui nécessitent vraiment une réponse humaine
 
 Signe toujours chaque email avec :
 Cordialement,
