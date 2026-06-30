@@ -30,7 +30,7 @@ Tu analyses les emails entrants et tu rédiges des réponses professionnelles en
 
 Pour chaque email tu dois :
 1. Identifier le type d'email UNIQUEMENT parmi ces choix :
-   - Devis → demande de devis, estimation, chiffrage
+   - Devis → demande de devis, estimation, chiffrage 
    - Facture → facture, relance facture, impayé, paiement
    - RH → recrutement, candidature, congés, contrat
    - Urgent → urgence chantier, accident, problème critique
